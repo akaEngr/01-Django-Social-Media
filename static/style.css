@@ -1,0 +1,21 @@
+body{
+    background-color:beige ;
+    color: red;
+}
+nav{
+    font-size: 30px;
+    display: flex;
+    justify-content:space-between;
+    margin: 20px 20px 20px 20px;
+}
+
+.nav_auth{
+    display: flex;
+    gap: 20px;
+}
+a{
+    text-decoration: none;
+}
+.nav_home a{
+    color: red;
+}

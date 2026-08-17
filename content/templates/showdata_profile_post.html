@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block content %}
+<form action="" method="GET">
+  {% csrf_token %} {% if profile_all_data %}
+  <select
+    name="profile_dropdown"
+    id="profile_dropdown"
+    onchange="this.form.submit()"
+  >
+    <!-- imp this.form.submit() -->
+     
+    <option value="">select</option>
+
+    {% for info_profile in profile_all_data %}
+    <option value="{{info_profile.id}}">{{info_profile.name}}</option> 
+
+    {% endfor %}
+  </select>
+
+  {% endif %}
+</form>
+
+{% if filtered_post_data %} {% for post in filtered_post_data %}
+<p>{{post.post_text}}</p>
+{% endfor %} {% endif %}
+
+<form action="" method="GET">
+  {% csrf_token %} {% if post_all_data %}
+  <select name="post_dropdown" id="post_dropdown" onchange="this.form.submit()">
+    <!-- imp -->
+    <option value="">select</option>
+
+    {% for info_post in post_all_data %}
+    <option value="{{info_post.id}}">{{info_post.post_text}}</option>
+
+    {% endfor %}
+  </select>
+
+  {% endif %}
+</form>
+
+{% if filtered_profile_data %}
+<p>{{filtered_profile_data.name}}</p>
+{% endif %} {% endblock %}

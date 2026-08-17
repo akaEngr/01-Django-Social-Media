@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% comment %} {% extends "base.html" %} {% block content %}
+<form action="" method="POST">
+  {% csrf_token %}
+
+  <div class="main">
+    {% if post_all_data %} 
+    
+    {% for show in post_all_data %}
+    <div class="post_data">{{show.post_text}}</div>
+    <button type="submit" value="{{show.id}}" name="post_id">
+      Like
+    </button>
+    {% endfor %} {% endif %}
+  </div>
+</form>
+
+{% endblock %} {% endcomment %}
+
+
+
+{% block content %}
+
+{% for show in post_all_data %}
+
+<div class="post">
+
+    {{ show.post_text }}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" name='post_comment' >
+       
+        <button
+            type="submit"
+            name="post_id"
+            value="{{ show.id }}">
+            Like
+        </button>
+        <button
+            type="submit"
+            name="post_id"
+            value="{{ show.id }}">
+            Like
+        </button>
+        <button
+            type="submit"
+            name="post_id"
+            value="{{ show.id }}">
+            Delete
+        </button>
+
+    </form>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} 
+use for loop outside of the form
+Each post has its own form.
+
+Post 1
+│
+└── FORM 1
+      │
+      └── Like Button
+
+
+Post 2
+│
+└── FORM 2
+      │
+      └── Like Button
+
+
+Post 3
+│
+└── FORM 3
+      │
+      └── Like Button
+{% endcomment %}
+
+
+
+
+
+
+{% comment %} 
+modern way 
+
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input type="hidden" name="post_id" value="{{ show.id }}">
+
+    <button type="submit" name="action" value="like">
+        Like
+    </button>
+
+    <button type="submit" name="action" value="delete">
+        Delete
+    </button>
+
+</form>
+
+
+post_id = request.POST.get("post_id")
+action = request.POST.get("action")
+
+if action == "like":
+    ...
+
+elif action == "delete":
+    ...
+
+{% endcomment %}

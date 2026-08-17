@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block content %}
+<form action="" method="GET">
+  {% csrf_token %} {% if post_all_data %}
+  <select
+    name="select_post_id"
+    id="select_post_id"
+    onchange="this.form.submit()"
+  >
+    <option value="">select</option>
+    {% for info_post in post_all_data %}
+    <option value="{{info_post.id}}">{{info_post.post_text}}</option>
+
+    {% endfor %}
+  </select>
+  {% endif %}
+</form>
+
+{% for show_data in filtered_tag_data %}
+<p>{{show_data.tag_text}}</p>
+{% endfor %}
+
+<form action="" method="GET">
+  {% csrf_token %} {% if tag_all_data %}
+  <select
+    name="select_tag_id"
+    id="select_tag_id"
+    onchange="this.form.submit()"
+  >
+    <option value="">select</option>
+    {% for info_tag in tag_all_data %}
+    <option value="{{info_tag.id}}">{{info_tag.tag_text}}</option>
+
+    {% endfor %}
+  </select>
+  {% endif %}
+</form>
+
+{% for show_data in filtered_post_data %}
+<p>{{show_data.post_text}}</p>
+{% endfor %}
+
+{% endblock %}

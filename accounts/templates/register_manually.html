@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Registration using manually</h1>
+    <form action="" method='POST'>
+        {% csrf_token %}
+        <input type="text" name='name' placeholder='name'>
+        <input type="text" name='password' placeholder='password'>
+        <button type='submit'>Submit</button>
+    </form>
+{% endblock %}

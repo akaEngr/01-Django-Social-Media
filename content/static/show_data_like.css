@@ -1,0 +1,10 @@
+.main{
+    border: 1px solid black;
+    width: '100vw';
+    height: "100vw";
+}
+
+.post_data{
+    width: 300px;
+    height: 500px;
+}

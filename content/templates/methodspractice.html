@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'methodpractice.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+  {% comment %} ?------------------------------------------------------------------------- {% endcomment %}
+    {% comment %}
+    ! 1. Retrieving Data
+    ? 1. Model.objects.all()
+
+    * We have those models
+    * 1. PostModel
+    * 2. CommentModel
+    * 3. ProfileModel
+    * 4. TagModel
+
+    * 1. PostModel.objects.all
+    {% endcomment %} 
+
+        
+    <div  style='color:black; border: 1px solid black; padding-left:15px; padding-right:15px;'>
+
+        <h2 style='color:black; background-color: white'>PostModel.objects.all</h2><hr><br>
+<form action="" method="GET">
+        {% csrf_token %}
+        {% if all_tag_data %}
+            {% for tag in all_tag_data %}
+                <button
+                type='submit'
+                name='tag_id'
+                value="{{tag.id}}"
+                >{{tag.tag_text}}</button> 
+            {% endfor %}
+        {% endif %}
+            
+</form>
+<br>
+
+{% if get_post_obj %}
+{% for post in get_post_obj %}
+<li>{{post.post_text}}</li>
+{% endfor %}
+{% endif %}
+<br><br>
+</div>
+
+
+       
+
+<table border=1>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+    </tr>
+    {% for key_value in a_values %}
+    <tr>
+        <td>
+            {{key_value.name}}
+        </td>
+        <td>
+            {{key_value.age}}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+
+
+<table border=1>
+    <tr>
+        <th>id</th>
+        <th>text</th>
+    </tr>
+    {% for post in all_post_data %}
+    <tr>
+        <td>
+            {{post.id}}
+        </td>
+        <td>
+            {{post.post_text}}
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {% for profile in all_profile_user %}
+
+        {{profile.name}}
+
+        <button type='submit' name='profile_id' value="{{profile.id}}">Follow</button> 
+
+        <button type='submit' name='unfollow_id' value="{{profile.id}}">Unfollow</button> <br>
+
+    {% endfor %}
+        
+    
+</form>    
+{% for profile in all_profile_user %}
+    Profile User : {{profile.name}} <br>
+    {% for p_fs in profile.user.followers.all %}
+        <!-- why following not working : because those are not following any one-->
+        <!-- We want to see who follows this profile,
+so we use profile.user.followers.all -->
+        <li>{{p_fs.follower}}</li><br>
+        
+        {% endfor %}
+
+    {% comment %} 
+    profile.user
+      │
+      ▼
+.followers.all()      ← related_name on User
+      │
+      ▼
+FollowModel object
+      │
+      ├── follower  → Aman
+      └── following → Ansh
+    
+    {% endcomment %}
+{% endfor %}
+
+
+
+{% endblock %}
+
+
+
+{% comment %} 
+! imp IMPORTANT
+* profile =  ProfileModel.objects.all()
+* print(profile) 
+* ----> Two types of output will show
+* 1. ig you give this : __str__() means self.name then it will gives you only all names instead an object
+* 2. __str__() --> NOT USING THIS then it will return OBJECT ---ProfileModel object (1)
+
+
+
+! two ways to show comment by profile.user.commentmodel_set.all and profile_post.commentmodel_set.all
+{% endcomment %}

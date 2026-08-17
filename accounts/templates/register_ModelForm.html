@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'forms.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Register with ModelForm</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class='form_group'>
+            <label for="form.username.id_for_label">
+                {{form.username.label}}
+            </label> <!-- imp-->
+            {{form.username}}
+            {{form.username.errors}}
+<br>
+            <label for="form.password.id_for_label">
+                {{form.password.label}}
+            {{form.password}}
+            {{form.password.errors}}
+        </div>
+        <button type='submit'>Submit</button>
+    </form>
+{% endblock %}

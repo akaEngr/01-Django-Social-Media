@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>User : {{request.user}}</h1>
+    <h1>Home Page</h1>
+    <h1><a href="{% url "user_profile" %}">Create Profile</a></h1>
+    <h1><a href="{% url "user_post" %}">Create Post</a></h1>
+    <h1><a href="{% url "showdata_profile_post" %}">Show relation data(post and profile)</a></h1>
+    <h1><a href="{% url "showdata_post_tags" %}">Show relation data (post and tags)</a></h1>
+    {% comment %} <h1><a href="{% url "show_post_likes" %}">Show post data with likes</a></h1> {% endcomment %}
+    <h1><a href="{% url "show_post_comment" %}">Show post data with comments</a></h1>
+    <h1><a href="{% url "methodspractice" %}">methods practice</a></h1>
+    
+<div>
+
+    <img src="{{ profile.profile_photo.url }}" width="150">
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,11 @@
+.form_group input{
+    /* background-color: antiquewhite; */
+    color: red;
+    border-radius: 10px;
+    height: 30px;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.form_group label{
+    color: rgb(88, 146, 95);
+}

@@ -1,0 +1,53 @@
+<nav class='nav'>
+
+
+<div class='nav_home'>
+    <div>
+        <a href="{% url "home" %}">Home</a>
+    </div>
+</div>
+
+{% if request.user.is_authenticated %} <!-- imp -->
+
+   
+        <div>
+            <a href="{% url "user_logout" %}">Logout</a>
+        </div>
+    
+    </div>
+{% else %}
+
+         <div class='nav_auth' >
+        <select name="" id="" id='nav_select' onchange='window.location.href = this.value;'> <!-- imp -->
+            <option value="">select</option>
+            <option value="{% url "register_User_Model" %}">
+                register_User_Model
+            </option>
+            <option value="{% url "register_UserCreatioForm" %}">
+                register_UserCreatioForm
+            </option>
+            <option value="{% url "register_ModelForm" %}">
+                register_ModelForm
+            </option>
+            <option value="{% url "register_manually" %}">
+                register_manually
+            </option>
+        
+        </select>
+        <div>
+            <a href="{% url "user_login" %}">Login</a>
+        </div>
+
+
+
+{% endif %}
+</nav>
+{% comment %} 
+{% block js %}
+
+<script> <!-- imp -->
+document.getElementById("navSelect").addEventListener("change", function () {
+    window.location.href = this.value;
+});
+</script>
+{% endblock %} {% endcomment %}
