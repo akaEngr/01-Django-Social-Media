@@ -64,20 +64,13 @@ SocialMedia/
 
 ## ⚙️ Installation & Setup
 
-### 1. Clone the repository
-
-```bash
-git clone <your-github-repository-url>
-cd socialmedia
-```
-
-### 2. Create a virtual environment
+### 1. Create a virtual environment
 
 ```bash
 python -m venv .venv
 ```
 
-### 3. Activate the virtual environment
+### 2. Activate the virtual environment
 
 **Windows:**
 
@@ -85,19 +78,19 @@ python -m venv .venv
 .venv\Scripts\activate
 ```
 
-### 4. Install Django
+### 3. Install Django
 
 ```bash
 pip install django
 ```
 
-### 5. Apply migrations
+### 4. Apply migrations
 
 ```bash
 python manage.py migrate
 ```
 
-### 6. Run the development server
+### 5. Run the development server
 
 ```bash
 python manage.py runserver
